@@ -11,4 +11,31 @@
     <!--This image is just a placeholder for the google maps api-->
     <img src="https://developers.google.com/maps/images/landing/hero_maps_static_api.png" alt="Google Maps Placer" width="1100" height="400"></img>
 
+
+    <div class="row mt-2">
+        <div class="col-12 mb-3 col-md-6">
+            <select class="form-select" id="filterByRegion" onchange="searchFilter()">
+                <option value="" selected>Filter by Region</option>
+                <option value="North America">North America</option>
+                <option value="South America">South America</option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="Oceania">Oceania</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 mb-3 col-md-6">
+            <select class="form-select" id="filterByImpactEnergy" onchange="searchFilter()">
+                <option value="" selected>Filter by Impact Energy (kt)</option>
+                <option value="Less than 0.1">Less than 0.1</option>
+                <option value="0.1 ~ 0.2">0.1 ~ 0.2</option>
+                <option value="0.2 ~ 0.3">0.2 ~ 0.3</option>
+                <option value="0.3 ~ 0.5">0.3 ~ 0.5</option>
+                <option value="0.5 ~ 1.0">0.5 ~ 1.0</option>
+                <option value="Greater than 1.0">Greater than 1.0</option>
+            </select>
+        </div>
+    </div>
 </body>
