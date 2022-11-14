@@ -1,7 +1,8 @@
 /**
  * Fixes the original csv so the coordinates can be used for google maps.
+ * Once the csv is fixed, you can use "csvtojson fixedCoordinates.csv > converted.json" in the console to update the json file
  * IMPORTANT: When using the original csv, edit the first line by removing the parenthesis and . in long and lat
- *            (e.g. { "Latitude (deg.)" } --> { Latitute (deg.) })
+ *            (e.g. { "Latitude (deg.)" } --> { Latitute (deg) })
  */
 const CSVToJSON = require("csvtojson");
 const JSONToCSV = require("json2csv").parse;
