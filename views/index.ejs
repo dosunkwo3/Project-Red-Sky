@@ -169,14 +169,14 @@
     <input type="text" id="StartYear" placeholder="Starting Year">
     <input type="text" id="EndYear" placeholder="Ending Year">
 
-    <button onclick="myFunction()">Enter</button>
+    <button onclick="dateFilter()">Enter</button>
 
     <p id="demo"></p>
     <p id="filterByImpactEnergy"></p>
     <p id="filterByRegion"></p>
 
     <script>
-        function myFunction() {
+        function dateFilter() {
             var x = document.getElementById("StartYear").value;
             var y = document.getElementById("EndYear").value;
             document.getElementById("demo").innerHTML = x + " " + y;
