@@ -90,6 +90,8 @@
             <label for="Extreme"> <input type="checkbox" id="extreme"/>Greater than 1.0 kt</label>
         </div>
     </form>
+    
+    
     <script>
         var expanded = false;
         function showCheckboxes()
@@ -130,15 +132,16 @@
     <input type="text" id="StartYear" placeholder="Starting Year">
     <input type="text" id="EndYear" placeholder="Ending Year">
 
-    <button onclick="myFunction()">Enter</button>
+    <button onclick="allFilters()">Enter</button>
+    <p id="demo"></p>
 
     
     <script>
-        function dateFilter() {
+        function allFilters() {
             var x = document.getElementById("StartYear").value;
             var y = document.getElementById("EndYear").value;
             document.getElementById("demo").innerHTML = x + " " + y;
-
+            
         }
     </script>
 
