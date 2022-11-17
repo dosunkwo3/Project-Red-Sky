@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Red Sky</title>
+    <link rel="stylesheet" type="text/css" href="/css/project.css">
+
+    
+</head>
+
+<body>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <h1>Fireball Map</h1>
+    <!--This image is just a placeholder for the google maps api-->
+    <div id="map"></div>
+    <script src="data.js"></script>
+    <script>
+        //data index's are: 0-time, 1-lat, 2-lng, 3-alt, 4-vel, 5-vx, 6-vy, 7-vz, 8-totRad, 9-totImpact
+
+        //import { coords } from './coords.js';
+        console.log("making map");
+        function initMap() {
+            
+            var myLatLng = { lat: 0, lng: 0 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: myLatLng,
+            });
+            
+            
+
+            
+
+            //creates markers
+            for (let i = 0; i < data.length; i++){
+                myLatLng = { lat: parseFloat(data[i][1]), lng: parseFloat(data[i][2])};
+
+                var titleStr = "Marker " + i;
+                let marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map,
+                    title: titleStr,
+                });
+
+                let contentString = "";
+                if (data[i][5] == "") {
+                    contentString = "<p>" + "Time: " + data[i][0] + "<br>"
+                                    + "Latitude: " + data[i][1] + "<br>"
+                                    + "Longitude: " + data[i][2] + "<br>"
+                                    + "Altitude (km): " + data[i][3] + "<br>"
+                                    + "Velocity (km/s): " + data[i][4] + "<br>"
+                                    + "Total Radiated Energy (J): " + data[i][8] + "<br>"
+                                    + "Calculated Total Impact Energy (kt): " + data[i][9] + "</p>";
+                } else {
+                    contentString = "<p>" + "Time: " + data[i][0] + "<br>"
+                                    + "Latitude: " + data[i][1] + "<br>"
+                                    + "Longitude: " + data[i][2] + "<br>"
+                                    + "Altitude (km): " + data[i][3] + "<br>"
+                                    + "Velocity (km/s): " + data[i][4] + "<br>"
+                                    + "vx: " + data[i][5] + "<br>"
+                                    + "vy: " + data[i][6] + "<br>"
+                                    + "vz: " + data[i][7] + "<br>"
+                                    + "Total Radiated Energy (J): " + data[i][8] + "<br>"
+                                    + "Calculated Total Impact Energy (kt): " + data[i][9] + "</p>";
+                }
+                
+                const infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    position: myLatLng
+                });
+
+                marker.addListener("click", () => {
+                    infowindow.open({
+                        map: map,
+                        anchor: marker,
+                        shouldFocus: false
+                    });
+                });
+
+                
+            }
+
+            
+            
+        }
+  
+        window.initMap = initMap;
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjbLOdbGLfQqbUeFYb9wMFRIte7TpFBhs&callback=initMap&v=weekly"
+        defer></script>
+    <form>
+        <div class="regionMultiselect">
+            <div class="selectBox" onclick="showCheckboxes()">
+                <select>
+                    <option>Choose your desired regions</option>
+                </select>
+            </div class="overSelect"></div>
+        </div>
+        <div id="checkboxes">
+            <label for="NA"> <input type="checkbox" id="NA"/>North America</label>
+            <label for="SA"> <input type="checkbox" id="SA"/>South America</label>
+            <label for="AF"> <input type="checkbox" id="AF"/>Africa</label>
+            <label for="AS"> <input type="checkbox" id="AS"/>Asia</label>
+            <label for="EU"> <input type="checkbox" id="EU"/>Europe</label>
+            <label for="OC"> <input type="checkbox" id="OC"/>Oceania</label>
+            <label for="Other"> <input type="checkbox" id="Other"/>Othere</label>
+            </div>
+    </form>
+    <form>
+        <div class="energyMultiselect">
+            <div class="selectBox2" onclick="showCheckboxes2()">
+                <select>
+                    <option>Choose your desired impact energy ranges (in kilotons)</option>
+                </select>
+            </div class="overSelect2"></div>
+        </div>
+        <div id="checkboxes2">
+            <label for="Very Small"> <input type="checkbox" id="verysmall"/>Less than 0.1 kt</label>
+            <label for="Small"> <input type="checkbox" id="small"/>0.1 ~ 0.2 kt</label>
+            <label for="Medium"> <input type="checkbox" id="medium"/>0.2 ~ 0.3 kt</label>
+            <label for="Large"> <input type="checkbox" id="large"/>0.3 ~ 0.5 kt</label>
+            <label for="Very Large"> <input type="checkbox" id="verylarge"/>0.5 ~ 1.0 kt</label>
+            <label for="Extreme"> <input type="checkbox" id="extreme"/>Greater than 1.0 kt</label>
+        </div>
+    </form>
+    <script>
+        var expanded = false;
+        function showCheckboxes()
+        {
+            var checkboxes = document.getElementById("checkboxes");
+            if(!expanded)
+            {
+                checkboxes.style.display = "block";
+                expanded = true;
+            }
+            else
+            {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }
+    </script>
+    <script>
+    var expanded2 = false;    
+    function showCheckboxes2()    
+    {    
+     var checkboxes2 = document.getElementById("checkboxes2");    
+     if(!expanded2)    
+     {    
+      checkboxes2.style.display = "block";    
+      expanded2 = true;    
+     }    
+     else    
+     {    
+      checkboxes2.style.display = "none";    
+      expanded2 = false;    
+     }    
+    }
+    </script>
+
+    <h3>Date Filter</h3>
+    <p>Enter two years between 1988 and 2022</p>
+    <input type="text" id="StartYear" placeholder="Starting Year">
+    <input type="text" id="EndYear" placeholder="Ending Year">
+
+    <button onclick="dateFilter()">Enter</button>
+
+    <p id="demo"></p>
+    <p id="filterByImpactEnergy"></p>
+    <p id="filterByRegion"></p>
+
+    <script>
+        function dateFilter() {
+            var x = document.getElementById("StartYear").value;
+            var y = document.getElementById("EndYear").value;
+            document.getElementById("demo").innerHTML = x + " " + y;
+
+        }
+    </script>
+
+    <!--Table Settings-->
+    <style>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr{
+            border-bottom: 1px solid #dddddd
+        }
+
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879
+        }
+
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879
+        }
+
+    </style>
+
+
+    <h1> Fireball Data Table </h1>
+    <table class="content-table">
+        <thead>
+            <tr>
+                <!--Table Header-->
+                <th>Date / Time</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Altitude</th>
+                <th>Velocity</th>
+                <th>VX</th>
+                <th>VY</th>
+                <th>VZ</th>
+                <th>Total Radiated Energy (J)</th>
+                <th>Total Impact Energy (kt)</th>
+            </tr>
+        </thead>
+        <!--Table Body-->
+        <tbody>
+            <tr>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+            </tr>
+            <tr class="active-row">
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+                <td>Text</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
