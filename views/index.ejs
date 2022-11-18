@@ -132,27 +132,44 @@
         <p id="regions"></p><br>
         <p id="energies"></p><br>
         <p id="years"></p><br>
-    
         
         <script>
             function allFilters() {
-                var NA = document.getElementById("region1").checked;
-                var SA = document.getElementById("region2").checked;
-                var EU = document.getElementById("region3").checked;
-                var AS = document.getElementById("region4").checked;
-                var AF = document.getElementById("region5").checked;
-                var OC = document.getElementById("region6").checked;
-                var nrg1 = document.getElementById("energy1").checked;
-                var nrg2 = document.getElementById("energy2").checked;
-                var nrg3 = document.getElementById("energy3").checked;
-                var nrg4 = document.getElementById("energy4").checked;
-                var nrg5 = document.getElementById("energy5").checked;
-                var nrg6 = document.getElementById("energy6").checked;
+                const regionFilters = [];
+                const energyFilters = [];            
+                var NA = document.getElementById("region1");
+                var SA = document.getElementById("region2");
+                var EU = document.getElementById("region3");
+                var AS = document.getElementById("region4");
+                var AF = document.getElementById("region5");
+                var OC = document.getElementById("region6");
+                var nrg1 = document.getElementById("energy1");
+                var nrg2 = document.getElementById("energy2");
+                var nrg3 = document.getElementById("energy3");
+                var nrg4 = document.getElementById("energy4");
+                var nrg5 = document.getElementById("energy5");
+                var nrg6 = document.getElementById("energy6");
                 var startYear = document.getElementById("StartYear").value;
                 var endYear = document.getElementById("EndYear").value;
+                const regions = [NA, SA, EU, AS, AF, OC];
+                const energies = [nrg1, nrg2, nrg3, nrg4, nrg5, nrg6];
+                for (let i = 0; i < regions.length; i++) {
+                    if (regions[i].checked){
+                        regionFilters.push(regions[i].value);
+                    }
+                };
+                for (let i = 0; i < energies.length; i++) {
+                    if (energies[i].checked){
+                        energyFilters.push(energies[i].value);
+                    }
+                };
+             
                 
-                document.getElementById("regions").innerHTML = NA + " " + SA + " " + EU + " " + AS + " " + AF + " " + OC;
-                document.getElementById("energies").innerHTML = nrg1 + " " + nrg2 + " " + nrg3 + " " + nrg4 + " " + nrg5 + " " + nrg6
+
+ 
+                
+                document.getElementById("regions").innerHTML = regionFilters;
+                document.getElementById("energies").innerHTML = energyFilters
                 document.getElementById("years").innerHTML = startYear + " " + endYear;
                 
             }
