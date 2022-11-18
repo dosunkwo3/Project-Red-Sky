@@ -21,7 +21,13 @@ app.get('/', (req, res)=> {
     res.render('index');
 });
 
+//load charts page
+app.get('/charts', (req, res)=> {
+    res.render('charts');
+})
+
 //start the server
 app.listen(port, host, () =>{
     console.log('The server is running at port ', port);
 });
+

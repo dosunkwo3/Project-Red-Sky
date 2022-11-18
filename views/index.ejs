@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
     <title>Project Red Sky</title>
     <link rel="stylesheet" type="text/css" href="/css/project.css">
 
 </head>
 
 <body>
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
+
+    
     <h1>Fireball Map</h1>
-    <!--This image is just a placeholder for the google maps api-->
+    <h2>Filters</h2>
     <div id="map"></div>
     
     <script>
@@ -26,15 +23,12 @@
         console.log("making map");
         function initMap() {
             
-            var myLatLng = { lat: 0, lng: 0 };
+            var myLatLng = { lat: 33.8, lng: -90.2 };
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 4,
                 center: myLatLng,
             });
-            
-            
-
-            
+                
 
             //creates markers
             for (let i = 0; i < data.length; i++){
@@ -91,11 +85,15 @@
   
         window.initMap = initMap;
     </script>
+
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjbLOdbGLfQqbUeFYb9wMFRIte7TpFBhs&callback=initMap&v=weekly"
         defer></script>
 
-        <h1>Region Filter</h1>
+        <div class="filter-settings">
+
+        <h3 style="font-size:18px">Region Filter</h3>
+        <div class="filter-text">
         <input type="checkbox" id="region1" name="region1" value="North America">
         <label for="region1"> North America</label><br>
         <input type="checkbox" id="region2" name="region2" value="South America">
@@ -108,8 +106,10 @@
         <label for="region1"> Africa</label><br>
         <input type="checkbox" id="region6" name="region6" value="Oceania">
         <label for="region1"> Oceania</label><br>
+        </div>
         
-        <h1>Impact Energy Filter</h1>
+        <h3 style="font-size:18px">Impact Energy Filter</h3>
+        <div class="filter-text">
         <input type="checkbox" id="energy1" name="energy1" value="Less than 0.1 kt">
         <label for="energy1"> Less than 0.1 kt</label><br>
         <input type="checkbox" id="energy2" name="energy2" value="0.1 ~ 0.2 kt">
@@ -122,16 +122,21 @@
         <label for="energy5"> 0.5 ~ 1.0 kt</label><br>
         <input type="checkbox" id="energy6" name="energy6" value="Greater than 1.0 kt">
         <label for="energy6"> Greater than 1.0 kt</label><br>
+        </div>
         
-        <h1>Date Filter</h1>
+        <h3 style="font-size:18px">Date Filter</h3>
+        <div class="filter-text">
         <p>Enter two years between 1988 and 2022</p>
         <input type="text" id="StartYear" placeholder="Starting Year">
         <input type="text" id="EndYear" placeholder="Ending Year"><br>
+        </div>
     
         <button onclick="allFilters()">Enter</button>
         <p id="regions"></p><br>
         <p id="energies"></p><br>
         <p id="years"></p><br>
+
+        </div>
     
         
         <script>
@@ -283,82 +288,82 @@
             {'date': '2020-05-12 23:22:56' ,'latitude': '15.9N' ,'longitude': '174.2E' ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '8.3e10'   ,'impactEnergy': '0.26'},
             {'date': '2020-05-09 09:37:15' ,'latitude': '7.2N'  ,'longitude': '44.2W'  ,'altitude': '52.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.1e10'   ,'impactEnergy': '0.14'},
             {'date': '2020-05-09 02:56:11' ,'latitude': '44.8N' ,'longitude': '131.0W' ,'altitude': '31.2' ,'velocity': '14.5' ,'vx': '-13.0' ,'vy': '-4.0'  ,'vz': '-5.0'  ,'radiatedEnergy': '4.1e10'   ,'impactEnergy': '0.14'},
-            // {'date': '2020-04-28 05:43:17' ,'latitude': '20.1N' ,'longitude': '109.4W' ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.1e10'   ,'impactEnergy': '0.076'},
-            // {'date': '2020-04-18 13:08:38' ,'latitude': '12.5N' ,'longitude': '49.8W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
-            // {'date': '2020-04-14 11:11:16' ,'latitude': '65.6S' ,'longitude': '45.6W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
-            // {'date': '2020-03-26 23:27:56' ,'latitude': '38.3S' ,'longitude': '23.5E'  ,'altitude': '26.5' ,'velocity': '20.7' ,'vx': '-10'   ,'vy': '3.2'   ,'vz': '17.8'  ,'radiatedEnergy': '12.4e10'  ,'impactEnergy': '0.37'},
-            // {'date': '2020-03-23 16:51:51' ,'latitude': '24.4S' ,'longitude': '67.9W'  ,'altitude': '25'   ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '13.3e10'  ,'impactEnergy': '0.39'},
-            // {'date': '2020-03-22 06:44:29' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
-            // {'date': '2020-03-04 20:25:59' ,'latitude': '53.3S' ,'longitude': '90.8E'  ,'altitude': '24.3' ,'velocity': '19.8' ,'vx': '-5.2'  ,'vy': '2.2'   ,'vz': '19.0'  ,'radiatedEnergy': '39.4e10'  ,'impactEnergy': '1'},
-            // {'date': '2020-02-28 09:30:34' ,'latitude': '45.7N' ,'longitude': '15.1E'  ,'altitude': '34.5' ,'velocity': '21.5' ,'vx': '-18.2' ,'vy': '-11.3' ,'vz': '-2.1'  ,'radiatedEnergy': '11.5e10'  ,'impactEnergy': '0.34'},
-            // {'date': '2020-02-24 22:21:28' ,'latitude': '3.6N'  ,'longitude': '96.0W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
-            // {'date': '2020-02-10 23:48:17' ,'latitude': '28.2N' ,'longitude': '76.7E'  ,'altitude': '41.7' ,'velocity': '31.7' ,'vx': '-27.8' ,'vy': '-14.3' ,'vz': '-5.2'  ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
-            // {'date': '2020-01-27 05:39:15' ,'latitude': '30.4N' ,'longitude': '1.5E'   ,'altitude': '32.5' ,'velocity': '19.8' ,'vx': '-2.0'  ,'vy': '-16.6' ,'vz': '-10.6' ,'radiatedEnergy': '4.4e10'   ,'impactEnergy': '0.15'},
-            // {'date': '2020-01-24 11:13:31' ,'latitude': '28.0N' ,'longitude': '35.8W'  ,'altitude': '32.0' ,'velocity': '21.2' ,'vx': '-18.6' ,'vy': '-9.0'  ,'vz': '-4.7'  ,'radiatedEnergy': '2.6e10'   ,'impactEnergy': '0.092'},
-            // {'date': '2020-01-21 20:07:44' ,'latitude': '33.1N' ,'longitude': '34.3E'  ,'altitude': '43.3' ,'velocity': '27.4' ,'vx': '-7.5'  ,'vy': '-23.5' ,'vz': '-11.9' ,'radiatedEnergy': '2.8e10'   ,'impactEnergy': '0.098'},
-            // {'date': '2020-01-17 21:29:49' ,'latitude': '19.4N' ,'longitude': '66.0W'  ,'altitude': '14.5' ,'velocity': '15.5' ,'vx': '-13.2' ,'vy': '8.1'   ,'vz': '1.2'   ,'radiatedEnergy': '9.7e10'   ,'impactEnergy': '0.29'},
-            // {'date': '2020-01-16 09:31:42' ,'latitude': '71.7S' ,'longitude': '116.4W' ,'altitude': '27.8' ,'velocity': '12.9' ,'vx': '9.8'   ,'vy': '-4.5'  ,'vz': '7.0'   ,'radiatedEnergy': '5.9e10'   ,'impactEnergy': '0.19'},
-            // {'date': '2020-01-15 06:31:39' ,'latitude': '23.7S' ,'longitude': '125.2W' ,'altitude': '31.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '19.6e10'  ,'impactEnergy': '0.55'},
-            // {'date': '2020-01-06 11:03:50' ,'latitude': '70.4S' ,'longitude': '17.5W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.5e10'   ,'impactEnergy': '0.15'},
-            // {'date': '2019-12-21 14:30:52' ,'latitude': '56.5N' ,'longitude': '147.6W' ,'altitude': '35.5' ,'velocity': '22.2' ,'vx': '14.9'  ,'vy': '-8.1'  ,'vz': '-14.3' ,'radiatedEnergy': '6.5e10'   ,'impactEnergy': '0.21'},
-            // {'date': '2019-12-11 01:19:11' ,'latitude': '47.7N' ,'longitude': '161.7E' ,'altitude': '37'   ,'velocity': '17.8' ,'vx': '13.7'  ,'vy': '-10.9' ,'vz': '-3.3'  ,'radiatedEnergy': '3.9e10'   ,'impactEnergy': '0.13'},
-            // {'date': '2019-12-06 10:19:57' ,'latitude': '3.3S'  ,'longitude': '37.7W'  ,'altitude': '19.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.6e10'   ,'impactEnergy': '0.15'},
-            // {'date': '2019-12-03 06:46:27' ,'latitude': '5.6N'  ,'longitude': '52.2W'  ,'altitude': '61.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
-            // {'date': '2019-11-28 20:30:54' ,'latitude': '35.7N' ,'longitude': '31.7W'  ,'altitude': '35'   ,'velocity': '13.0' ,'vx': '-11.6' ,'vy': '-2.5'  ,'vz': '-5.4'  ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
-            // {'date': '2019-11-28 13:22:10' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.6e10'   ,'impactEnergy': '0.092'},
-            // {'date': '2019-11-28 11:55:02' ,'latitude': '22.1S' ,'longitude': '25.7E'  ,'altitude': '22.5' ,'velocity': '24.7' ,'vx': '-22.8' ,'vy': '-5.5'  ,'vz': '7.6'   ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
-            // {'date': '2019-11-05 11:24:51' ,'latitude': '10.4S' ,'longitude': '143.3W' ,'altitude': '38.0' ,'velocity': '27.4' ,'vx': '5.2'   ,'vy': '12.3'  ,'vz': '23.9'  ,'radiatedEnergy': '11.0e10'  ,'impactEnergy': '0.33'},
-            // {'date': '2019-10-22 22:21:15' ,'latitude': '12.0N' ,'longitude': '76.0W'  ,'altitude': '40.7' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
-            // {'date': '2019-10-10 16:16:36' ,'latitude': '44.3N' ,'longitude': '122.9E' ,'altitude': '47.3' ,'velocity': '14.1' ,'vx': '1.5'   ,'vy': '-12.9' ,'vz': '-5.4'  ,'radiatedEnergy': '20.6e10'  ,'impactEnergy': '0.57'},
-            // {'date': '2019-09-28 10:40:20' ,'latitude': '12.5S' ,'longitude': '107.2W' ,'altitude': '52'   ,'velocity': '20.4' ,'vx': '-10.1' ,'vy': '11.2'  ,'vz': '13.7'  ,'radiatedEnergy': '2.3e10'   ,'impactEnergy': '0.082'},
-            // {'date': '2019-09-27 13:35:46' ,'latitude': '25.7N' ,'longitude': '28.4W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '3.4e10'   ,'impactEnergy': '0.12'},
-            // {'date': '2019-09-14 12:39:34' ,'latitude': '38.6S' ,'longitude': '33.5W'  ,'altitude': '38'   ,'velocity': '15.9' ,'vx': '-12.9' ,'vy': '8.1'   ,'vz': '4.6'   ,'radiatedEnergy': '10.9e10'  ,'impactEnergy': '0.33'},
-            // {'date': '2019-09-13 02:02:04' ,'latitude': '18.6S' ,'longitude': '126.9E' ,'altitude': '27.4' ,'velocity': '13.5' ,'vx': '5.2'   ,'vy': '-8.1'  ,'vz': '9.5'   ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
-            // {'date': '2019-09-12 12:49:48' ,'latitude': '54.5N' ,'longitude': '9.2E'   ,'altitude': '42'   ,'velocity': '18.5' ,'vx': '-18.1' ,'vy': '-0.4'  ,'vz': '3.7'   ,'radiatedEnergy': '16.9e10'  ,'impactEnergy': '0.48'},
-            // {'date': '2019-09-12 02:34:58' ,'latitude': '24.9N' ,'longitude': '47.8W'  ,'altitude': '30.6' ,'velocity': '17.2' ,'vx': '-11.7' ,'vy': '11.7'  ,'vz': '4.6'   ,'radiatedEnergy': '5.9e10'   ,'impactEnergy': '0.19'},
-            // {'date': '2019-08-24 12:02:59' ,'latitude': '21.9N' ,'longitude': '130.4W' ,'altitude': '39.8' ,'velocity': '13.4' ,'vx': '11.1'  ,'vy': '-5.2'  ,'vz': '5.4'   ,'radiatedEnergy': '4.0e10'   ,'impactEnergy': '0.13'},
-            // {'date': '2019-08-22 21:47:29' ,'latitude': '24.4S' ,'longitude': '92.9W'  ,'altitude': '30.2' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
-            // {'date': '2019-08-16 20:36:05' ,'latitude': '38.9N' ,'longitude': '7.0E'   ,'altitude': '36.0' ,'velocity': '14.9' ,'vx': '-3.9'  ,'vy': '4.0'   ,'vz': '-13.8' ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
-            // {'date': '2019-07-23 20:42:58' ,'latitude': '44.6N' ,'longitude': '147.6W' ,'altitude': '30.6' ,'velocity': '16.1' ,'vx': '1.5'   ,'vy': '15.1'  ,'vz': '-5.5'  ,'radiatedEnergy': '25.5e10'  ,'impactEnergy': '0.69'},
-            // {'date': '2019-06-30 16:52:58' ,'latitude': '21.2N' ,'longitude': '129.5W' ,'altitude': '59.0' ,'velocity': '42.3' ,'vx': '25.2'  ,'vy': '31.2'  ,'vz': '-13.3' ,'radiatedEnergy': '3.2e10'   ,'impactEnergy': '0.11'},
-            // {'date': '2019-06-30 08:11:29' ,'latitude': '2.5S'  ,'longitude': '168.7E' ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.1e10'   ,'impactEnergy': '0.076'},
-            // {'date': '2019-06-22 21:25:48' ,'latitude': '14.9N' ,'longitude': '66.2W'  ,'altitude': '25.0' ,'velocity': '14.9' ,'vx': '-13.4' ,'vy': '6.0'   ,'vz': '2.5'   ,'radiatedEnergy': '294.7e10' ,'impactEnergy': '6'},
-            // {'date': '2019-06-20 06:07:32' ,'latitude': '7.3N'  ,'longitude': '67.6W'  ,'altitude': '37.0' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.8e10'   ,'impactEnergy': '0.098'},
-            // {'date': '2019-05-26 10:07:55' ,'latitude': '56.6N' ,'longitude': '25.3W'  ,'altitude': '24.4' ,'velocity': '17.5' ,'vx': '3.8'   ,'vy': '-5.8'  ,'vz': '16.1'  ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
-            // {'date': '2019-05-25 06:44:04' ,'latitude': '19.2S' ,'longitude': '89.4E'  ,'altitude': '29.2' ,'velocity': '15.8' ,'vx': '0.2'   ,'vy': '-15.7' ,'vz': '2.1'   ,'radiatedEnergy': '4.9e10'   ,'impactEnergy': '0.16'},
-            // {'date': '2019-05-22 15:16:49' ,'latitude': '10.8N' ,'longitude': '37.3W'  ,'altitude': '32.6' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '9.5e10'   ,'impactEnergy': '0.29'},
-            // {'date': '2019-05-21 13:21:35' ,'latitude': '38.8S' ,'longitude': '137.5E' ,'altitude': '31.5' ,'velocity': '11.5' ,'vx': '4.4'   ,'vy': '-8.5'  ,'vz': '6.4'   ,'radiatedEnergy': '65.6e10'  ,'impactEnergy': '1.6'},
-            // {'date': '2019-05-19 14:47:03' ,'latitude': '23.6S' ,'longitude': '132.8E' ,'altitude': '33.3' ,'velocity': '15.2' ,'vx': '7.3'   ,'vy': '-12.2' ,'vz': '5.3'   ,'radiatedEnergy': '3.3e10'   ,'impactEnergy': '0.11'},
-            // {'date': '2019-05-12 22:41:48' ,'latitude': '6.2N'  ,'longitude': '57.1W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.1e10'   ,'impactEnergy': '0.076'},
-            // {'date': '2019-05-04 15:35:46' ,'latitude': '28.4N' ,'longitude': '88.3W'  ,'altitude': '26.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.2e10'   ,'impactEnergy': '0.079'},
-            // {'date': '2019-04-22 21:42:11' ,'latitude': '48.8S' ,'longitude': '67.8E'  ,'altitude': '33.3' ,'velocity': '11.4' ,'vx': '3.4'   ,'vy': '-4.2'  ,'vz': '10.0'  ,'radiatedEnergy': '12.4e10'  ,'impactEnergy': '0.37'},
-            // {'date': '2019-04-14 17:54:33' ,'latitude': '18.3N' ,'longitude': '74.6W'  ,'altitude': '30.6' ,'velocity': '15.9' ,'vx': '-2.5'  ,'vy': '5.9'   ,'vz': '-14.6' ,'radiatedEnergy': '2.9e10'   ,'impactEnergy': '0.1'},
-            // {'date': '2019-04-06 11:59:09' ,'latitude': '56.5N' ,'longitude': '94.9E'  ,'altitude': '41.5' ,'velocity': '18.1' ,'vx': '6.2'   ,'vy': '11.1'  ,'vz': '-12.9' ,'radiatedEnergy': '7.0e10'   ,'impactEnergy': '0.22'},
-            // {'date': '2019-04-04 22:19:01' ,'latitude': '35.3N' ,'longitude': '93.9W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.8e10'   ,'impactEnergy': '0.098'},
-            // {'date': '2019-03-27 12:50:34' ,'latitude': '41.8S' ,'longitude': '7.4W'   ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.2e10'   ,'impactEnergy': '0.079'},
-            // {'date': '2019-03-19 02:06:39' ,'latitude': '24.0S' ,'longitude': '140.3E' ,'altitude': '28.7' ,'velocity': '16.2' ,'vx': '10.2'  ,'vy': '0.4'   ,'vz': '12.6'  ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
-            // {'date': '2019-03-15 12:26:56' ,'latitude': '63.7N' ,'longitude': '95.7E'  ,'altitude': '31.5' ,'velocity': '14.4' ,'vx': '5.4'   ,'vy': '-13.2' ,'vz': '1.7'   ,'radiatedEnergy': '4.6e10'   ,'impactEnergy': '0.15'},
-            // {'date': '2019-02-18 10:00:43' ,'latitude': '15.5S' ,'longitude': '25.3E'  ,'altitude': '26'   ,'velocity': '20.8' ,'vx': '-16.6' ,'vy': '-12.6' ,'vz': '0.6'   ,'radiatedEnergy': '195.8e10' ,'impactEnergy': '4.2'},
-            // {'date': '2019-02-01 18:17:10' ,'latitude': '22.5N' ,'longitude': '83.8W'  ,'altitude': '23.7' ,'velocity': '16.3' ,'vx': '-2.4'  ,'vy': '13.6'  ,'vz': '8.7'   ,'radiatedEnergy': '57.9e10'  ,'impactEnergy': '1.4'},
-            // {'date': '2019-01-29 20:47:20' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
-            // {'date': '2019-01-22 09:18:01' ,'latitude': '18.0N' ,'longitude': '6.5E'   ,'altitude': '42.5' ,'velocity': '11.6' ,'vx': '-8.6'  ,'vy': '-5.9'  ,'vz': '5.0'   ,'radiatedEnergy': '3.6e10'   ,'impactEnergy': '0.12'},
-            // {'date': '2018-12-23 23:38:03' ,'latitude': '47.5S' ,'longitude': '174.4W' ,'altitude': '31.8' ,'velocity': '16.5' ,'vx': '9.9'   ,'vy': '7.6'   ,'vz': '10.8'  ,'radiatedEnergy': '8.9e10'   ,'impactEnergy': '0.27'},
-            // {'date': '2018-12-18 23:48:20' ,'latitude': '56.9N' ,'longitude': '172.4E' ,'altitude': '26.0' ,'velocity': '13.6' ,'vx': '6.3'   ,'vy': '-3.0'  ,'vz': '-31.2' ,'radiatedEnergy': '3.13e13'  ,'impactEnergy': '49'},
-            // {'date': '2018-11-20 17:30:28' ,'latitude': '25.3N' ,'longitude': '6.7W'   ,'altitude': '27.4' ,'velocity': '17.4' ,'vx': '-10.1' ,'vy': '13.9'  ,'vz': '3.0'   ,'radiatedEnergy': '42.2e10'  ,'impactEnergy': '1.1'},
-            // {'date': '2018-11-17 21:48:24' ,'latitude': '47.3N' ,'longitude': '172.9W' ,'altitude': '32.5' ,'velocity': '19.1' ,'vx': '7.6'   ,'vy': '17.3'  ,'vz': '-2.7'  ,'radiatedEnergy': '22.0e10'  ,'impactEnergy': '0.61'},
-            // {'date': '2018-11-15 08:02:44' ,'latitude': '42N'   ,'longitude': '57W'    ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
-            // {'date': '2018-11-14 04:03:47' ,'latitude': '37.6S' ,'longitude': '83.5E'  ,'altitude': '37'   ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '3.8e10'   ,'impactEnergy': '0.13'},
-            // {'date': '2018-10-24 21:19:07' ,'latitude': '6.7S'  ,'longitude': '148.6W' ,'altitude': '33.3' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.7e10'   ,'impactEnergy': '0.16'},
-            // {'date': '2018-10-22 07:11:03' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.6e10'   ,'impactEnergy': '0.092'},
-            // {'date': '2018-10-05 00:27:04' ,'latitude': '39.8S' ,'longitude': '31.7W'  ,'altitude': '31.5' ,'velocity': '14.7' ,'vx': '-13.2' ,'vy': '-6.5'  ,'vz': '-0.4'  ,'radiatedEnergy': '3.8e10'   ,'impactEnergy': '0.13'},
-            // {'date': '2018-09-25 14:10:33' ,'latitude': '23.5S' ,'longitude': '56.8E'  ,'altitude': '33.0' ,'velocity': '16.5' ,'vx': '-16.2' ,'vy': '2.8'   ,'vz': '0.6'   ,'radiatedEnergy': '80.6e10'  ,'impactEnergy': '1.9'},
-            // {'date': '2018-09-25 00:16:59' ,'latitude': '34.3S' ,'longitude': '44.9E'  ,'altitude': '40.7' ,'velocity': '12.5' ,'vx': '-11.0' ,'vy': '2.5'   ,'vz': '-5.5'  ,'radiatedEnergy': '5.3e10'   ,'impactEnergy': '0.17'},
-            // {'date': '2018-09-20 18:29:03' ,'latitude': '67.3S' ,'longitude': '75.1E'  ,'altitude': ''     ,'velocity': '11.1' ,'vx': '-5.6'  ,'vy': '-7.9'  ,'vz': '5.5'   ,'radiatedEnergy': '8.3e10'   ,'impactEnergy': '0.26'},
-            // {'date': '2018-09-17 01:08:02' ,'latitude': '6.8S'  ,'longitude': '27.8W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '15.0e10'  ,'impactEnergy': '0.43'},
-            // {'date': '2018-09-13 00:51:21' ,'latitude': '42.5N' ,'longitude': '50.1W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
-            // {'date': '2018-08-27 04:36:45' ,'latitude': '1.7S'  ,'longitude': '141.4E' ,'altitude': '33.0' ,'velocity': '16.1' ,'vx': '9.8'   ,'vy': '-9.6'  ,'vz': '-8.4'  ,'radiatedEnergy': '2.4e10'   ,'impactEnergy': '0.086'},
-            // {'date': '2018-08-21 12:26:14' ,'latitude': '39.2S' ,'longitude': '162.9W' ,'altitude': '37.0' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.2e10'   ,'impactEnergy': '0.079'},
-            // {'date': '2018-07-27 09:35:14' ,'latitude': '58.8S' ,'longitude': '105.8E' ,'altitude': '32.0' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '10.5e10'  ,'impactEnergy': '0.32'},
+            {'date': '2020-04-28 05:43:17' ,'latitude': '20.1N' ,'longitude': '109.4W' ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.1e10'   ,'impactEnergy': '0.076'},
+            {'date': '2020-04-18 13:08:38' ,'latitude': '12.5N' ,'longitude': '49.8W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
+            {'date': '2020-04-14 11:11:16' ,'latitude': '65.6S' ,'longitude': '45.6W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
+            {'date': '2020-03-26 23:27:56' ,'latitude': '38.3S' ,'longitude': '23.5E'  ,'altitude': '26.5' ,'velocity': '20.7' ,'vx': '-10'   ,'vy': '3.2'   ,'vz': '17.8'  ,'radiatedEnergy': '12.4e10'  ,'impactEnergy': '0.37'},
+            {'date': '2020-03-23 16:51:51' ,'latitude': '24.4S' ,'longitude': '67.9W'  ,'altitude': '25'   ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '13.3e10'  ,'impactEnergy': '0.39'},
+            {'date': '2020-03-22 06:44:29' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
+            {'date': '2020-03-04 20:25:59' ,'latitude': '53.3S' ,'longitude': '90.8E'  ,'altitude': '24.3' ,'velocity': '19.8' ,'vx': '-5.2'  ,'vy': '2.2'   ,'vz': '19.0'  ,'radiatedEnergy': '39.4e10'  ,'impactEnergy': '1'},
+            {'date': '2020-02-28 09:30:34' ,'latitude': '45.7N' ,'longitude': '15.1E'  ,'altitude': '34.5' ,'velocity': '21.5' ,'vx': '-18.2' ,'vy': '-11.3' ,'vz': '-2.1'  ,'radiatedEnergy': '11.5e10'  ,'impactEnergy': '0.34'},
+            {'date': '2020-02-24 22:21:28' ,'latitude': '3.6N'  ,'longitude': '96.0W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
+            {'date': '2020-02-10 23:48:17' ,'latitude': '28.2N' ,'longitude': '76.7E'  ,'altitude': '41.7' ,'velocity': '31.7' ,'vx': '-27.8' ,'vy': '-14.3' ,'vz': '-5.2'  ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
+            {'date': '2020-01-27 05:39:15' ,'latitude': '30.4N' ,'longitude': '1.5E'   ,'altitude': '32.5' ,'velocity': '19.8' ,'vx': '-2.0'  ,'vy': '-16.6' ,'vz': '-10.6' ,'radiatedEnergy': '4.4e10'   ,'impactEnergy': '0.15'},
+            {'date': '2020-01-24 11:13:31' ,'latitude': '28.0N' ,'longitude': '35.8W'  ,'altitude': '32.0' ,'velocity': '21.2' ,'vx': '-18.6' ,'vy': '-9.0'  ,'vz': '-4.7'  ,'radiatedEnergy': '2.6e10'   ,'impactEnergy': '0.092'},
+            {'date': '2020-01-21 20:07:44' ,'latitude': '33.1N' ,'longitude': '34.3E'  ,'altitude': '43.3' ,'velocity': '27.4' ,'vx': '-7.5'  ,'vy': '-23.5' ,'vz': '-11.9' ,'radiatedEnergy': '2.8e10'   ,'impactEnergy': '0.098'},
+            {'date': '2020-01-17 21:29:49' ,'latitude': '19.4N' ,'longitude': '66.0W'  ,'altitude': '14.5' ,'velocity': '15.5' ,'vx': '-13.2' ,'vy': '8.1'   ,'vz': '1.2'   ,'radiatedEnergy': '9.7e10'   ,'impactEnergy': '0.29'},
+            {'date': '2020-01-16 09:31:42' ,'latitude': '71.7S' ,'longitude': '116.4W' ,'altitude': '27.8' ,'velocity': '12.9' ,'vx': '9.8'   ,'vy': '-4.5'  ,'vz': '7.0'   ,'radiatedEnergy': '5.9e10'   ,'impactEnergy': '0.19'},
+            {'date': '2020-01-15 06:31:39' ,'latitude': '23.7S' ,'longitude': '125.2W' ,'altitude': '31.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '19.6e10'  ,'impactEnergy': '0.55'},
+            {'date': '2020-01-06 11:03:50' ,'latitude': '70.4S' ,'longitude': '17.5W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.5e10'   ,'impactEnergy': '0.15'},
+            {'date': '2019-12-21 14:30:52' ,'latitude': '56.5N' ,'longitude': '147.6W' ,'altitude': '35.5' ,'velocity': '22.2' ,'vx': '14.9'  ,'vy': '-8.1'  ,'vz': '-14.3' ,'radiatedEnergy': '6.5e10'   ,'impactEnergy': '0.21'},
+            {'date': '2019-12-11 01:19:11' ,'latitude': '47.7N' ,'longitude': '161.7E' ,'altitude': '37'   ,'velocity': '17.8' ,'vx': '13.7'  ,'vy': '-10.9' ,'vz': '-3.3'  ,'radiatedEnergy': '3.9e10'   ,'impactEnergy': '0.13'},
+            {'date': '2019-12-06 10:19:57' ,'latitude': '3.3S'  ,'longitude': '37.7W'  ,'altitude': '19.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.6e10'   ,'impactEnergy': '0.15'},
+            {'date': '2019-12-03 06:46:27' ,'latitude': '5.6N'  ,'longitude': '52.2W'  ,'altitude': '61.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
+            {'date': '2019-11-28 20:30:54' ,'latitude': '35.7N' ,'longitude': '31.7W'  ,'altitude': '35'   ,'velocity': '13.0' ,'vx': '-11.6' ,'vy': '-2.5'  ,'vz': '-5.4'  ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
+            {'date': '2019-11-28 13:22:10' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.6e10'   ,'impactEnergy': '0.092'},
+            {'date': '2019-11-28 11:55:02' ,'latitude': '22.1S' ,'longitude': '25.7E'  ,'altitude': '22.5' ,'velocity': '24.7' ,'vx': '-22.8' ,'vy': '-5.5'  ,'vz': '7.6'   ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
+            {'date': '2019-11-05 11:24:51' ,'latitude': '10.4S' ,'longitude': '143.3W' ,'altitude': '38.0' ,'velocity': '27.4' ,'vx': '5.2'   ,'vy': '12.3'  ,'vz': '23.9'  ,'radiatedEnergy': '11.0e10'  ,'impactEnergy': '0.33'},
+            {'date': '2019-10-22 22:21:15' ,'latitude': '12.0N' ,'longitude': '76.0W'  ,'altitude': '40.7' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.7e10'   ,'impactEnergy': '0.095'},
+            {'date': '2019-10-10 16:16:36' ,'latitude': '44.3N' ,'longitude': '122.9E' ,'altitude': '47.3' ,'velocity': '14.1' ,'vx': '1.5'   ,'vy': '-12.9' ,'vz': '-5.4'  ,'radiatedEnergy': '20.6e10'  ,'impactEnergy': '0.57'},
+            {'date': '2019-09-28 10:40:20' ,'latitude': '12.5S' ,'longitude': '107.2W' ,'altitude': '52'   ,'velocity': '20.4' ,'vx': '-10.1' ,'vy': '11.2'  ,'vz': '13.7'  ,'radiatedEnergy': '2.3e10'   ,'impactEnergy': '0.082'},
+            {'date': '2019-09-27 13:35:46' ,'latitude': '25.7N' ,'longitude': '28.4W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '3.4e10'   ,'impactEnergy': '0.12'},
+            {'date': '2019-09-14 12:39:34' ,'latitude': '38.6S' ,'longitude': '33.5W'  ,'altitude': '38'   ,'velocity': '15.9' ,'vx': '-12.9' ,'vy': '8.1'   ,'vz': '4.6'   ,'radiatedEnergy': '10.9e10'  ,'impactEnergy': '0.33'},
+            {'date': '2019-09-13 02:02:04' ,'latitude': '18.6S' ,'longitude': '126.9E' ,'altitude': '27.4' ,'velocity': '13.5' ,'vx': '5.2'   ,'vy': '-8.1'  ,'vz': '9.5'   ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
+            {'date': '2019-09-12 12:49:48' ,'latitude': '54.5N' ,'longitude': '9.2E'   ,'altitude': '42'   ,'velocity': '18.5' ,'vx': '-18.1' ,'vy': '-0.4'  ,'vz': '3.7'   ,'radiatedEnergy': '16.9e10'  ,'impactEnergy': '0.48'},
+            {'date': '2019-09-12 02:34:58' ,'latitude': '24.9N' ,'longitude': '47.8W'  ,'altitude': '30.6' ,'velocity': '17.2' ,'vx': '-11.7' ,'vy': '11.7'  ,'vz': '4.6'   ,'radiatedEnergy': '5.9e10'   ,'impactEnergy': '0.19'},
+            {'date': '2019-08-24 12:02:59' ,'latitude': '21.9N' ,'longitude': '130.4W' ,'altitude': '39.8' ,'velocity': '13.4' ,'vx': '11.1'  ,'vy': '-5.2'  ,'vz': '5.4'   ,'radiatedEnergy': '4.0e10'   ,'impactEnergy': '0.13'},
+            {'date': '2019-08-22 21:47:29' ,'latitude': '24.4S' ,'longitude': '92.9W'  ,'altitude': '30.2' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
+            {'date': '2019-08-16 20:36:05' ,'latitude': '38.9N' ,'longitude': '7.0E'   ,'altitude': '36.0' ,'velocity': '14.9' ,'vx': '-3.9'  ,'vy': '4.0'   ,'vz': '-13.8' ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
+            {'date': '2019-07-23 20:42:58' ,'latitude': '44.6N' ,'longitude': '147.6W' ,'altitude': '30.6' ,'velocity': '16.1' ,'vx': '1.5'   ,'vy': '15.1'  ,'vz': '-5.5'  ,'radiatedEnergy': '25.5e10'  ,'impactEnergy': '0.69'},
+            {'date': '2019-06-30 16:52:58' ,'latitude': '21.2N' ,'longitude': '129.5W' ,'altitude': '59.0' ,'velocity': '42.3' ,'vx': '25.2'  ,'vy': '31.2'  ,'vz': '-13.3' ,'radiatedEnergy': '3.2e10'   ,'impactEnergy': '0.11'},
+            {'date': '2019-06-30 08:11:29' ,'latitude': '2.5S'  ,'longitude': '168.7E' ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.1e10'   ,'impactEnergy': '0.076'},
+            {'date': '2019-06-22 21:25:48' ,'latitude': '14.9N' ,'longitude': '66.2W'  ,'altitude': '25.0' ,'velocity': '14.9' ,'vx': '-13.4' ,'vy': '6.0'   ,'vz': '2.5'   ,'radiatedEnergy': '294.7e10' ,'impactEnergy': '6'},
+            {'date': '2019-06-20 06:07:32' ,'latitude': '7.3N'  ,'longitude': '67.6W'  ,'altitude': '37.0' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.8e10'   ,'impactEnergy': '0.098'},
+            {'date': '2019-05-26 10:07:55' ,'latitude': '56.6N' ,'longitude': '25.3W'  ,'altitude': '24.4' ,'velocity': '17.5' ,'vx': '3.8'   ,'vy': '-5.8'  ,'vz': '16.1'  ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
+            {'date': '2019-05-25 06:44:04' ,'latitude': '19.2S' ,'longitude': '89.4E'  ,'altitude': '29.2' ,'velocity': '15.8' ,'vx': '0.2'   ,'vy': '-15.7' ,'vz': '2.1'   ,'radiatedEnergy': '4.9e10'   ,'impactEnergy': '0.16'},
+            {'date': '2019-05-22 15:16:49' ,'latitude': '10.8N' ,'longitude': '37.3W'  ,'altitude': '32.6' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '9.5e10'   ,'impactEnergy': '0.29'},
+            {'date': '2019-05-21 13:21:35' ,'latitude': '38.8S' ,'longitude': '137.5E' ,'altitude': '31.5' ,'velocity': '11.5' ,'vx': '4.4'   ,'vy': '-8.5'  ,'vz': '6.4'   ,'radiatedEnergy': '65.6e10'  ,'impactEnergy': '1.6'},
+            {'date': '2019-05-19 14:47:03' ,'latitude': '23.6S' ,'longitude': '132.8E' ,'altitude': '33.3' ,'velocity': '15.2' ,'vx': '7.3'   ,'vy': '-12.2' ,'vz': '5.3'   ,'radiatedEnergy': '3.3e10'   ,'impactEnergy': '0.11'},
+            {'date': '2019-05-12 22:41:48' ,'latitude': '6.2N'  ,'longitude': '57.1W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.1e10'   ,'impactEnergy': '0.076'},
+            {'date': '2019-05-04 15:35:46' ,'latitude': '28.4N' ,'longitude': '88.3W'  ,'altitude': '26.5' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.2e10'   ,'impactEnergy': '0.079'},
+            {'date': '2019-04-22 21:42:11' ,'latitude': '48.8S' ,'longitude': '67.8E'  ,'altitude': '33.3' ,'velocity': '11.4' ,'vx': '3.4'   ,'vy': '-4.2'  ,'vz': '10.0'  ,'radiatedEnergy': '12.4e10'  ,'impactEnergy': '0.37'},
+            {'date': '2019-04-14 17:54:33' ,'latitude': '18.3N' ,'longitude': '74.6W'  ,'altitude': '30.6' ,'velocity': '15.9' ,'vx': '-2.5'  ,'vy': '5.9'   ,'vz': '-14.6' ,'radiatedEnergy': '2.9e10'   ,'impactEnergy': '0.1'},
+            {'date': '2019-04-06 11:59:09' ,'latitude': '56.5N' ,'longitude': '94.9E'  ,'altitude': '41.5' ,'velocity': '18.1' ,'vx': '6.2'   ,'vy': '11.1'  ,'vz': '-12.9' ,'radiatedEnergy': '7.0e10'   ,'impactEnergy': '0.22'},
+            {'date': '2019-04-04 22:19:01' ,'latitude': '35.3N' ,'longitude': '93.9W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.8e10'   ,'impactEnergy': '0.098'},
+            {'date': '2019-03-27 12:50:34' ,'latitude': '41.8S' ,'longitude': '7.4W'   ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.2e10'   ,'impactEnergy': '0.079'},
+            {'date': '2019-03-19 02:06:39' ,'latitude': '24.0S' ,'longitude': '140.3E' ,'altitude': '28.7' ,'velocity': '16.2' ,'vx': '10.2'  ,'vy': '0.4'   ,'vz': '12.6'  ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
+            {'date': '2019-03-15 12:26:56' ,'latitude': '63.7N' ,'longitude': '95.7E'  ,'altitude': '31.5' ,'velocity': '14.4' ,'vx': '5.4'   ,'vy': '-13.2' ,'vz': '1.7'   ,'radiatedEnergy': '4.6e10'   ,'impactEnergy': '0.15'},
+            {'date': '2019-02-18 10:00:43' ,'latitude': '15.5S' ,'longitude': '25.3E'  ,'altitude': '26'   ,'velocity': '20.8' ,'vx': '-16.6' ,'vy': '-12.6' ,'vz': '0.6'   ,'radiatedEnergy': '195.8e10' ,'impactEnergy': '4.2'},
+            {'date': '2019-02-01 18:17:10' ,'latitude': '22.5N' ,'longitude': '83.8W'  ,'altitude': '23.7' ,'velocity': '16.3' ,'vx': '-2.4'  ,'vy': '13.6'  ,'vz': '8.7'   ,'radiatedEnergy': '57.9e10'  ,'impactEnergy': '1.4'},
+            {'date': '2019-01-29 20:47:20' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.5e10'   ,'impactEnergy': '0.089'},
+            {'date': '2019-01-22 09:18:01' ,'latitude': '18.0N' ,'longitude': '6.5E'   ,'altitude': '42.5' ,'velocity': '11.6' ,'vx': '-8.6'  ,'vy': '-5.9'  ,'vz': '5.0'   ,'radiatedEnergy': '3.6e10'   ,'impactEnergy': '0.12'},
+            {'date': '2018-12-23 23:38:03' ,'latitude': '47.5S' ,'longitude': '174.4W' ,'altitude': '31.8' ,'velocity': '16.5' ,'vx': '9.9'   ,'vy': '7.6'   ,'vz': '10.8'  ,'radiatedEnergy': '8.9e10'   ,'impactEnergy': '0.27'},
+            {'date': '2018-12-18 23:48:20' ,'latitude': '56.9N' ,'longitude': '172.4E' ,'altitude': '26.0' ,'velocity': '13.6' ,'vx': '6.3'   ,'vy': '-3.0'  ,'vz': '-31.2' ,'radiatedEnergy': '3.13e13'  ,'impactEnergy': '49'},
+            {'date': '2018-11-20 17:30:28' ,'latitude': '25.3N' ,'longitude': '6.7W'   ,'altitude': '27.4' ,'velocity': '17.4' ,'vx': '-10.1' ,'vy': '13.9'  ,'vz': '3.0'   ,'radiatedEnergy': '42.2e10'  ,'impactEnergy': '1.1'},
+            {'date': '2018-11-17 21:48:24' ,'latitude': '47.3N' ,'longitude': '172.9W' ,'altitude': '32.5' ,'velocity': '19.1' ,'vx': '7.6'   ,'vy': '17.3'  ,'vz': '-2.7'  ,'radiatedEnergy': '22.0e10'  ,'impactEnergy': '0.61'},
+            {'date': '2018-11-15 08:02:44' ,'latitude': '42N'   ,'longitude': '57W'    ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.0e10'   ,'impactEnergy': '0.073'},
+            {'date': '2018-11-14 04:03:47' ,'latitude': '37.6S' ,'longitude': '83.5E'  ,'altitude': '37'   ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '3.8e10'   ,'impactEnergy': '0.13'},
+            {'date': '2018-10-24 21:19:07' ,'latitude': '6.7S'  ,'longitude': '148.6W' ,'altitude': '33.3' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.7e10'   ,'impactEnergy': '0.16'},
+            {'date': '2018-10-22 07:11:03' ,'latitude': ''      ,'longitude': ''       ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.6e10'   ,'impactEnergy': '0.092'},
+            {'date': '2018-10-05 00:27:04' ,'latitude': '39.8S' ,'longitude': '31.7W'  ,'altitude': '31.5' ,'velocity': '14.7' ,'vx': '-13.2' ,'vy': '-6.5'  ,'vz': '-0.4'  ,'radiatedEnergy': '3.8e10'   ,'impactEnergy': '0.13'},
+            {'date': '2018-09-25 14:10:33' ,'latitude': '23.5S' ,'longitude': '56.8E'  ,'altitude': '33.0' ,'velocity': '16.5' ,'vx': '-16.2' ,'vy': '2.8'   ,'vz': '0.6'   ,'radiatedEnergy': '80.6e10'  ,'impactEnergy': '1.9'},
+            {'date': '2018-09-25 00:16:59' ,'latitude': '34.3S' ,'longitude': '44.9E'  ,'altitude': '40.7' ,'velocity': '12.5' ,'vx': '-11.0' ,'vy': '2.5'   ,'vz': '-5.5'  ,'radiatedEnergy': '5.3e10'   ,'impactEnergy': '0.17'},
+            {'date': '2018-09-20 18:29:03' ,'latitude': '67.3S' ,'longitude': '75.1E'  ,'altitude': ''     ,'velocity': '11.1' ,'vx': '-5.6'  ,'vy': '-7.9'  ,'vz': '5.5'   ,'radiatedEnergy': '8.3e10'   ,'impactEnergy': '0.26'},
+            {'date': '2018-09-17 01:08:02' ,'latitude': '6.8S'  ,'longitude': '27.8W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '15.0e10'  ,'impactEnergy': '0.43'},
+            {'date': '2018-09-13 00:51:21' ,'latitude': '42.5N' ,'longitude': '50.1W'  ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '4.2e10'   ,'impactEnergy': '0.14'},
+            {'date': '2018-08-27 04:36:45' ,'latitude': '1.7S'  ,'longitude': '141.4E' ,'altitude': '33.0' ,'velocity': '16.1' ,'vx': '9.8'   ,'vy': '-9.6'  ,'vz': '-8.4'  ,'radiatedEnergy': '2.4e10'   ,'impactEnergy': '0.086'},
+            {'date': '2018-08-21 12:26:14' ,'latitude': '39.2S' ,'longitude': '162.9W' ,'altitude': '37.0' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '2.2e10'   ,'impactEnergy': '0.079'},
+            {'date': '2018-07-27 09:35:14' ,'latitude': '58.8S' ,'longitude': '105.8E' ,'altitude': '32.0' ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '10.5e10'  ,'impactEnergy': '0.32'},
             // {'date': '2018-07-25 21:55:26' ,'latitude': '76.9N' ,'longitude': '69.0W'  ,'altitude': '43.3' ,'velocity': '24.4' ,'vx': '20.4'  ,'vy': '12.9'  ,'vz': '-3.8'  ,'radiatedEnergy': '87.7e10'  ,'impactEnergy': '2.1'},
             // {'date': '2018-07-17 15:17:37' ,'latitude': '82.5N' ,'longitude': '136.7W' ,'altitude': ''     ,'velocity': ''     ,'vx': ''      ,'vy': ''      ,'vz': ''      ,'radiatedEnergy': '21.1e10'  ,'impactEnergy': '0.59'},
             // {'date': '2018-06-26 17:51:53' ,'latitude': '32.0N' ,'longitude': '12.1E'  ,'altitude': '63.0' ,'velocity': '14.1' ,'vx': '-10.0' ,'vy': '-1.0'  ,'vz': '-9.9'  ,'radiatedEnergy': '2.9e10'   ,'impactEnergy': '0.1'},
@@ -1133,29 +1138,33 @@
 
     // Sort table                           <-Table sorting doesn't work yet
     
-    //  $('th').on('click', function(){         
-    //  var column = $(this).data('colname')
-    //  var order = $(this).data('order')
-    //  var text = $(this).html()
-    //  text = text.substring(0, text.length - 1);
+     $('th').on('click', function(){         
+        var column = $(this).data('colname')
+        var order = $(this).data('order')
+        var text = $(this).html()
+        text = text.substring(0, text.length - 1);
      
-    // myArray = myArray.sort((a, b) => a[column] > b[column] ? 1 : -1)
-    // $(this).data("order","asc");
-    // text += '&#9660'
-    
-    // $(this).html(text)
-    // buildTable(myArray)
-    // })
+        if(order == 'desc') {
+			$(this).data('order', "asc")
+			myArray = myArray.sort((a,b) => a[column] > b[column] ? 1 : -1)
+			text += '&#9660'
 
+		}else {
+			$(this).data('order', "desc")
+			myArray = myArray.sort((a,b) => a[column] < b[column] ? 1 : -1)
+			text += '&#9650'
 
-
+		}
+    $(this).html(text)
+    buildTable(myArray)
+    })
 
                 
     function buildTable(data){
         var table = document.getElementById('myTable')
         table.innerHTML = ''                    
         for (var i = 0; i < data.length; i++){
-            //var colname = `num-${i}`
+            var colname = `num-${i}`
             var row = `<tr>
                 <td>${data[i].date}</td>
                 <td>${data[i].latitude}</td>
@@ -1177,3 +1186,5 @@
 </div>
 </body>
 
+
+</html>
