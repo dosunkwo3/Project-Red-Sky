@@ -1,0 +1,49 @@
+<div class="filter-settings">
+
+    <h3 style="font-size:18px">Region Filter</h3>
+    <div class="filter-text">
+        <input type="checkbox" id="region1" name="region1" value="North America">
+        <label for="region1"> North America</label><br>
+        <input type="checkbox" id="region2" name="region2" value="South America">
+        <label for="region2"> South America</label><br>
+        <input type="checkbox" id="region3" name="region3" value="Europe">
+        <label for="region3"> Europe</label><br>
+        <input type="checkbox" id="region4" name="region4" value="Asia">
+        <label for="region4"> Asia</label><br>
+        <input type="checkbox" id="region5" name="region5" value="Africa">
+        <label for="region5"> Africa</label><br>
+        <input type="checkbox" id="region6" name="region6" value="Oceania">
+        <label for="region6"> Oceania</label><br>
+    </div>
+
+    <h3 style="font-size:18px">Impact Energy Filter</h3>
+    <div class="filter-text">
+        <input type="checkbox" id="energy1" name="energy1" value="Less than 0.1 kt">
+        <label for="energy1"> Less than 0.1 kt</label><br>
+        <input type="checkbox" id="energy2" name="energy2" value="0.1 ~ 0.2 kt">
+        <label for="energy2"> 0.1 ~ 0.2 kt</label><br>
+        <input type="checkbox" id="energy3" name="energy3" value="0.2 ~ 0.3 kt">
+        <label for="energy3"> 0.2 ~ 0.3 kt</label><br>
+        <input type="checkbox" id="energy4" name="energy4" value="0.3 ~ 0.5 kt">
+        <label for="energy4"> 0.3 ~ 0.5 kt</label><br>
+        <input type="checkbox" id="energy5" name="energy5" value="0.5 ~ 1.0 kt">
+        <label for="energy5"> 0.5 ~ 1.0 kt</label><br>
+        <input type="checkbox" id="energy6" name="energy6" value="Greater than 1.0 kt">
+        <label for="energy6"> Greater than 1.0 kt</label><br>
+    </div>
+
+    <h3 style="font-size:18px">Date Filter</h3>
+    <div class="filter-text">
+        <p>Enter two years between 1988 and 2022</p>
+        <input type="text" id="StartYear" placeholder="Starting Year" value="1988">
+        <input type="text" id="EndYear" placeholder="Ending Year" value="2022"><br>
+    </div>
+
+    <input id="filter-markers" type="button" value="Submit" />
+    <input id="hide-markers" type="button" value="Hide All" />
+    <input id="show-markers" type="button" value="Show All" />
+    <p id="regions"></p><br>
+    <p id="energies"></p><br>
+    <p id="years"></p><br>
+
+</div>
