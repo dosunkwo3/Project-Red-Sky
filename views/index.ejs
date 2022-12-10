@@ -290,8 +290,7 @@
                 buildTable(myArray)
 
 
-                // Sort table                           <-Table sorting doesn't work yet
-
+                // sorts table when clicking column headers
                 $('th').on('click', function () {
                     var column = $(this).data('colname')
                     var order = $(this).data('order')
@@ -312,7 +311,7 @@
                     buildTable(myArray)
                 })
 
-
+                // builds table
                 function buildTable(data) {
                     var table = document.getElementById('myTable')
                     table.innerHTML = ''
@@ -320,17 +319,17 @@
                     for (var i = 0; i < data.length; i++) {
                         var colname = `num-${i}`
                         var row = `<tr>
-                <td>${data[i].date}</td>
-                <td>${data[i].latitude}</td>
-                <td>${data[i].longitude}</td>
-                <td>${data[i].altitude}</td>
-                <td>${data[i].velocity}</td>
-                <td>${data[i].vx}</td>
-                <td>${data[i].vy}</td>
-                <td>${data[i].vz}</td>
-                <td>${(data[i].radiatedEnergy).toExponential(2)}</td>
-                <td>${data[i].impactEnergy}</td>
-            </tr>`
+                        <td>${data[i].date}</td>
+                        <td>${data[i].latitude}</td>
+                        <td>${data[i].longitude}</td>
+                        <td>${data[i].altitude}</td>
+                        <td>${data[i].velocity}</td>
+                        <td>${data[i].vx}</td>
+                        <td>${data[i].vy}</td>
+                        <td>${data[i].vz}</td>
+                        <td>${(data[i].radiatedEnergy).toExponential(2)}</td>
+                        <td>${data[i].impactEnergy}</td>
+                        </tr>`
                         table.innerHTML += row
                     }
                 }
